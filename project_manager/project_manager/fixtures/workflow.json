@@ -1,0 +1,137 @@
+[
+ {
+  "doctype": "Workflow",
+  "document_type": "User Story",
+  "is_active": 1,
+  "override_status": 1,
+  "workflow_name": "User Story Workflow",
+  "workflow_state_field": "status",
+  "states": [
+   {
+    "allow_edit": "Implementor",
+    "doc_status": 0,
+    "state": "Draft",
+    "update_field": "status",
+    "update_value": "Draft"
+   },
+   {
+    "allow_edit": "Implementor",
+    "doc_status": 0,
+    "state": "Pending PM Approval",
+    "update_field": "status",
+    "update_value": "Pending PM Approval"
+   },
+   {
+    "allow_edit": "PM Tech Lead",
+    "doc_status": 0,
+    "state": "Approved",
+    "update_field": "status",
+    "update_value": "Approved"
+   },
+   {
+    "allow_edit": "PM Tech Lead",
+    "doc_status": 0,
+    "state": "Cancelled",
+    "update_field": "status",
+    "update_value": "Cancelled"
+   }
+  ],
+  "transitions": [
+   {
+    "action": "Submit for Approval",
+    "allowed": "Implementor",
+    "next_state": "Pending PM Approval",
+    "state": "Draft"
+   },
+   {
+    "action": "Approve",
+    "allowed": "PM Tech Lead",
+    "next_state": "Approved",
+    "state": "Pending PM Approval"
+   },
+   {
+    "action": "Cancel",
+    "allowed": "PM Tech Lead",
+    "next_state": "Cancelled",
+    "state": "Pending PM Approval"
+   }
+  ]
+ },
+ {
+  "doctype": "Workflow",
+  "document_type": "Software Task",
+  "is_active": 1,
+  "override_status": 1,
+  "workflow_name": "Software Task Workflow",
+  "workflow_state_field": "status",
+  "states": [
+   {
+    "allow_edit": "Tech Lead",
+    "doc_status": 0,
+    "state": "To Do",
+    "update_field": "status",
+    "update_value": "To Do"
+   },
+   {
+    "allow_edit": "Developer",
+    "doc_status": 0,
+    "state": "In Progress",
+    "update_field": "status",
+    "update_value": "In Progress"
+   },
+   {
+    "allow_edit": "Developer",
+    "doc_status": 0,
+    "state": "Under Review",
+    "update_field": "status",
+    "update_value": "Under Review"
+   },
+   {
+    "allow_edit": "Tech Lead",
+    "doc_status": 0,
+    "state": "Completed",
+    "update_field": "status",
+    "update_value": "Completed"
+   },
+   {
+    "allow_edit": "Tech Lead",
+    "doc_status": 0,
+    "state": "Rejected",
+    "update_field": "status",
+    "update_value": "Rejected"
+   }
+  ],
+  "transitions": [
+   {
+    "action": "Start Working",
+    "allowed": "Developer",
+    "next_state": "In Progress",
+    "state": "To Do"
+   },
+   {
+    "action": "Submit for Review",
+    "allowed": "Developer",
+    "next_state": "Under Review",
+    "state": "In Progress"
+   },
+   {
+    "action": "Approve Completion",
+    "allowed": "Tech Lead",
+    "next_state": "Completed",
+    "state": "Under Review"
+   },
+   {
+    "action": "Reject",
+    "allowed": "Tech Lead",
+    "next_state": "Rejected",
+    "state": "Under Review"
+   },
+   {
+    "action": "Re-open",
+    "allowed": "Tech Lead",
+    "next_state": "In Progress",
+    "state": "Rejected"
+   }
+  ]
+ }
+]
